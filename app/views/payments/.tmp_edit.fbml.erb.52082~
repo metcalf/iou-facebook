@@ -1,0 +1,60 @@
+<%
+=begin
+@other_user
+@debts (with other user)
+@form_values
+=end
+%>
+
+<% #<fb:editor action="<%= url_for(:controller => :payments, :action => :edit) %>" width="425" labelwidth="150"> %>
+<form id="debt_form" action="<%= Facebooker.facebook_path_prefix + url_for(:controller => :payments, :action => :edit) %>" method="post"><table class="editorkit" border="0" cellspacing="0" style="width:380px"><tr class="width_setter"><th style="width:80px"></th><td></td></tr>
+	<fb:editor-custom label="You Are">
+		<input type="radio" id="payor_radio" style="width: 30px;" name="direction" value="payor" <%= @form_values != nil and @form_values[:direction]== 'payor' ? 'checked' : '' %> />Paying <fb:name uid="<%= @other_user.id %>" linked="false" capitalize="true" /><br />
+		<input type="radio" style="width: 30px;" name="direction" value="payee" <%= @form_values == nil || @form_values[:direction]== 'payee' ? 'checked' : '' %> /> Being Paid By <fb:name uid="<%= @other_user.id %>" linked="false" capitalize="true" />
+		<input type="hidden" name="other_user_id" value="<%= @other_user.id %>" />
+		<% if @id %>
+			<input type="hidden" name="id" value="<%= @id %>" />
+		<% end %>
+	</fb:editor-custom label=>	
+		
+	<fb:editor-custom label="Payment Amount">
+		$<input type="text" name="amount" class="amount_field" id="payment_amount" onblur="suggest_debts(this);" /> &nbsp; <span id="remaining"></span>
+		<input type="hidden" id="debt_js_data" name="debt_js_data" value="<%= @debts_js %>" />
+	</fb:editor-custom>
+	
+	<fb:editor-custom label="Payment For">
+		<fb:fbml version="1.1"><fb:typeahead-input name="debt_selector" autocomplete="off"> 
+			<% @debts.each do |debt|
+				 amount = debt.amount(@current_user, @other_user)
+				 if(amount.abs > 0.005)
+			%>
+				<fb:typeahead-option value="<%= debt.id %>"><%= debt.name + ' ('+ (amount < 0 ? 'Owed ':'Owe ') + number_to_currency(amount.abs) + ')' %></fb:typeahead-option>
+			<%   end
+			   end %>
+		</fb:typeahead-input></fb:fbml>
+		<tr><th>&nbsp;</th><td><table id="debt_selector_insert" class="selected_user_insert">
+		</table></td></tr>
+	</fb:editor-custom>
+	
+	<fb:editor-custom label="Date">
+    	<%= date_select("payment", "date", :start_year => 2000, :default => (@form_values == nil ? Time.now : @form_values[:date]) ) %>
+    </fb:editor-custom>
+	<fb:editor-text label="Notes" name="notes" value="<%= @form_values == nil ? '' : @form_values[:notes] %>"/>
+</table></form>
+<span style="display:none;"><fb:editor></fb:editor></span>
+
+<script type="text/javascript" src="<%= WEB_ROOT %>/javascripts/user_select.js">
+</script>
+	
+<% if @form_values != nil %>			
+	<script type="text/javascript">
+		<% count = 0
+		   @form_values[:debt_selector_data].each do |debt| %>
+		     addRow("<%= debt[:name] %>",  "debt_selector_data[<%= count %>][selection_id]", "<%= debt[:selection_id] %>", "debt_selector_data[<%= count %>][amount]",document.getElementById("debt_selector_insert"));
+			 row = document.getElementById("debt_selector_data[<%= count %>][amount]").setValue("<%= debt[:amount] %>");
+		<% count = count + 1 
+		   end %>
+		   
+		document.getElementById("debt_selector_insert").setTitle("<%= count %>");
+	</script>
+<% end %>

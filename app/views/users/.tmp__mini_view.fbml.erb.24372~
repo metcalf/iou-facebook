@@ -1,0 +1,52 @@
+<%
+=begin
+--- Parameters: single parameter 'person' representing a facebook user, uses these attributes:
+id: The facebook user's id
+debtor?: whether the person is in debt to the current user
+amount: absolute amount the person owes/is owed to the current user
+debts(@current_user): list of debts with the current user
+	- name: name of the debt
+=end
+%>
+
+<div class="result clearfix">
+	<% narrow ||= false %>
+	<% if not narrow %>
+		<div class="image">
+			<%= link_to_friend(person.id, '<fb:profile-pic uid="'+person.id.to_s+'" size="small" linked="false" />') %>
+		</div>
+	<% end %>
+	<div class="info <% if narrow %>narrow<% else %>wide<% end %>">
+		<dl class="clearfix">
+			<dt>Name:</dt>			<dd><%= link_to_friend(person.id) %></dd>
+			<% if person.debtor? %>
+				<dt>Owes you:</dt>	
+			<% else %>
+			    <dt>You owe:</dt>
+			<% end %>
+									<dd><%= number_to_currency(person.amount(@current_user).abs) %></dd>
+			
+					<% pay_amount = person.payments_to(@current_user)
+					   if pay_amount > 0 %>
+						<dt>Has paid you:</dt>
+					<% else %>
+						<dt>You have paid:</dt>
+					<% end %>
+									<dd><%= number_to_currency(pay_amount.abs) %></dd>
+			<dt>For:</dt>			<dd>
+										<% count = 0
+										   person.debts(@current_user).each do |debt|
+										  	 count += 1
+											 break unless count < 8 %>
+											 <a href="<%= url_for(:controller => :debts, :action => :view, :id => debt.id) %>"><%= debt.name %></a>, 
+										<% end %>
+										<% if count == 8 %>
+											<br /><a href="<%= url_for(:controller => :debts, :action => :results) %>">(more)</a>
+										<% end %>
+									</dd>
+		</dl>
+	</div>
+	<ul class="actionspro <% if narrow %>narrow<% else %>wide<% end %>_action">
+		<li id="payment_insert"><a onclick="add_user_payment('<%= person.id %>','payment_insert');">Record Payment</a></li>
+	</ul>
+</div>

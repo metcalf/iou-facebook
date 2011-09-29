@@ -1,0 +1,32 @@
+<% @no_space = true 
+   @payment_script = true
+%>
+	<div class="bar clearfix filter_bar">
+		Filters are coming soon
+	</div>
+<% if @users.length > 0 %>
+	<div class="bar clearfix summary_bar">
+		<div class="summary"><strong>
+			Displaying <%= (@users.offset + 1).to_s + " - " + (@users.offset + @users.length).to_s %> out of <%= @users.total_entries %> friends
+		</strong></div>
+		<ul class="pagerpro">
+			<%= will_paginate @users, :container => false, :renderer => 'ListLinkRenderer'   %>
+		</ul>
+	</div>
+	<div id="search_results" class="search_results clearfix">
+		<div class="column results">
+			<% @users.each do |person| %>
+				<%= render :partial => "mini_view", :locals => {:person => person } %>
+			<% end %>
+		</div>
+	</div>
+	<div class="bar footer_bar clearfix">
+		<div class="pagerpro_container">
+			<ul class="pagerpro">
+				<%= will_paginate @users, :container => false, :renderer => 'ListLinkRenderer'  %>
+			</ul>
+		</div>
+	</div>
+<% else %>
+	<div class="fallback">No users with debts found</div>
+<% end %>

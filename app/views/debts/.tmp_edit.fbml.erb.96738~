@@ -1,0 +1,68 @@
+<% #<fb:editor action="<%= url_for(:controller => :debts, :action => :edit) %>" width="425" labelwidth="150"> %>
+<form id="debt_form" action="<%= url_for(:action => :edit) %>" method="post"><table class="editorkit" border="0" cellspacing="0" style="width:575px"><tr class="width_setter"><th style="width:150px"></th><td></td></tr>
+
+    <fb:editor-custom>
+        <div class="header">
+            <h2>Basic Information</h2>
+        </div>
+		<% if @id %>
+			<input type="hidden" name="id" value="<%= @id %>" />
+		<% end %>
+    </fb:editor-custom>
+    <fb:editor-text label="IOU Name" name="name" value="<%= @form_values == nil ? '' : @form_values[:name] %>"/>
+	<% if @form_values != nil and not @form_values[:tags].kind_of?(String)%>
+		<%= render :partial => 'tags_view', :locals => { :tags => @form_values[:tags], :debt_id => @form_values[:debt_id], :current_user => @current_user } %> 
+	<% else %>
+		<fb:editor-text label="Categories (separate with commas)" name="tags" value="<%= @form_values == nil ? '' : @form_values[:tags] %>"/>
+	<% end %>
+	<fb:editor-textarea label="Description" name="description" rows="3" ><%= @form_values == nil ? '' : @form_values[:description] %></fb:editor-textarea>
+    <fb:editor-custom label="Date">
+    	<%= date_select("debt", "date", :start_year => 2000, :default => (@form_values == nil ? Time.now : (@form_values[:date].kind_of?(String) ? Date.parse(@form_values[:date]) : @form_values[:date]) ) ) %>
+    </fb:editor-custom>
+	<fb:editor-custom label="Picture (optional)">
+		Coming soon!
+        <input type="hidden" name="image[uploaded_data]" size="40">
+    </fb:editor-custom>
+	<fb:editor-custom label="Permissions">
+    	<input style="width:30px;" type="radio" name="permissions_level" value="1" <%= ((@form_values == nil or not ['2'].include?(@form_values[:permissions_level].to_s)) ? 'checked' : '') %> > Only I can edit this IOU <br />
+		<input style="width:30px;" type="radio" name="permissions_level" value="2" <%= (@form_values != nil and @form_values[:permissions_level].to_s == '2' ? 'checked' : '') %> > Anyone who owes or is owed money can edit this IOU <br />
+    </fb:editor-custom>
+    <fb:editor-custom>
+        <br/>
+        <div class="header">
+            <h2>Creditors (who is owed money)</h2>
+        </div>
+    </fb:editor-custom>
+   <fb:editor-custom label="Creditors">
+        <fb:friend-selector name="creditor_selector" idname="creditor_selector_val" include_me="true" prefill_ids="616421" />
+        
+    </fb:editor-custom>
+	<tr><th>&nbsp;</th><td><table class="selected_item_insert"><tbody id="creditor_selector_insert">
+		<% if @form_values != nil and @form_values.has_key?(:creditor_selector_data) %>
+			<%= render :partial => 'user_debt_view', :locals => { :user_debts => @form_values[:creditor_selector_data], :name => 'creditor_selector'} %>
+		<% end %>	
+	</tbody></table></td></tr>
+    <fb:editor-custom>
+        <br/>
+        <div class="header">
+            <h2>Debtors (who owes money)</h2>
+        </div>
+		<br />
+		<input style="width:30px;" type="radio" name="entryMode" value="split"  onclick="setEntryMode('split')"> Split equally<br />
+		<input style="width:30px;" type="radio" name="entryMode" value="manual" onclick="setEntryMode('manual')" checked> Enter amount manually <br />
+    </fb:editor-custom>
+    <fb:editor-custom label="Debtors">
+        <fb:friend-selector name="debtor_selector" idname="debtor_selector_val" include_me="true" />
+    </fb:editor-custom>
+	<tr><th>&nbsp;</th><td><table class="selected_item_insert"><tbody id="debtor_selector_insert">
+		<% if @form_values != nil and @form_values.has_key?(:debtor_selector_data) %>
+			<%= render :partial => 'user_debt_view', :locals => { :user_debts => @form_values[:debtor_selector_data], :name => 'debtor_selector'} %>
+		<% end %>
+	</tbody></table></td></tr>
+    <fb:editor-buttonset>
+        <fb:editor-button value="Save" name="save"/>
+    </fb:editor-buttonset>
+</table></form>
+<span style="display:none;"><fb:editor></fb:editor></span>
+<script type="text/javascript" src="<%= WEB_ROOT %>/javascripts/user_select.js?v=1.24">
+</script>

@@ -1,0 +1,46 @@
+<% @no_space = true %>
+<script type="text/javascript">
+	function deleteDebt(id){
+		var dialog = new Dialog(Dialog.DIALOG_POP);
+		dialog.onconfirm = function(){
+			document.setLocation('http://apps.facebook.com<%= url_for(:controller => :debts, :action => :delete) %>/'+id)
+		}
+		dialog.showChoice("Delete", "Are you sure you want to delete?");
+	}
+</script>
+	<div class="bar clearfix filter_bar">
+		<form method="post" action="<%= url_for(:controller => :debts, :action => :results) %>">
+			<span class="filter_options">
+				<span class="filter_option" >Search: <input type="text" value="<%= @search %>" name="search" /></span>
+				<span class="filter_option" >Only show IOUs I created: <input type="checkbox" name="own" value="1" <%= @own == 1 ? 'checked' : ''  %> /></span>
+			</span>
+			<span class="filter_submit"><button name="submit">Search</button></span>
+		</form>
+	</div>
+<% if @debts.length > 0 %>
+	<div class="bar clearfix summary_bar">
+		<div class="summary"><strong>
+			Displaying <%= (@debts.offset + 1).to_s + " - " + (@debts.offset + @debts.length).to_s %> out of <%= @debts.total_entries %> IOUs.
+			<%= (@sum_debts > 0 ? "You owe " : "You are owed ") + "$" + @sum_debts.abs.to_s %> for the IOUs on this page.
+		</strong></div>
+		<ul class="pagerpro">
+			<%= will_paginate @debts, :container => false, :renderer => 'ListLinkRenderer'  %>
+		</ul>
+	</div>
+	<div ="search_results" class="search_results clearfix">
+		<div class="column results">
+			<% @debts.each do |debt| %>
+				<%= render :partial => "mini_view", :locals => {:debt => debt} %>
+			<% end %>
+		</div>
+	</div>
+	<div class="bar footer_bar clearfix">
+		<div class="pagerpro_container">
+			<ul class="pagerpro">
+				<%= will_paginate @debts, :container => false, :renderer => 'ListLinkRenderer'  %>
+			</ul>
+		</div>
+	</div>
+<% else %>
+	<div class="fallback">No Debts were found</div>
+<% end %>

@@ -1,0 +1,124 @@
+<%
+=begin
+--- Parameters: a single user parameter representing the current user
+id
+owes: amount this user owes in total
+owed: amount this user is owed in total
+amount: amount this user owes
+debts(@current_user): the debts this user owes/is owed
+	- name
+own_debts: any debts this user has created
+num_friends: the number of friends the user has debts with
+friends: the friends with whom this user has debts
+	- id
+	- debtor? is the friend a debtor to the current user?
+	- amount: amount the friend owes the current user
+=end
+%>
+
+<div id="left_col">
+	<div class="header">
+		<h2>Information</h2>
+	</div>
+	<div class="box clearfix">
+		<table class="info_table">
+			<caption>Summary</caption>
+			<tr>
+				<td class="label">
+				<% if (amount = @current_user.amount) > 0 %>
+					You Owe:
+				<% else %>
+					You Are Owed:
+				<% end %>
+				 </td>
+				<td><div class="datawrap" style="color:red"><%= number_to_currency(amount.abs) %></div></td>
+			</tr>
+			<tr>
+				<td class="label">For:</td>			
+				<td><div class="datawrap">
+					<% count = 0
+					   @current_user.debts.each do |debt|
+					  	 count += 1
+						 break unless count < 8 %>
+						 <a href="<%= url_for(:controller => :debts, :action => :view, :id => debt.id) %>"><%= debt.name %></a>, 
+					<% end %>
+					<% if count == 8 %>
+						<br /><a href="<%= url_for(:controller => :debts, :action => :results) %>">(more)</a>
+					<% end %>
+				</div></td>
+			</tr>
+		</table>
+	</div>
+	<% debts = @current_user.own_debts
+	   count = 0 %>
+	<div class="header">
+		<h2>IOUs You Created</h2>
+		<%= debts.length > 4 ? link_to("(see all)", :controller => :debts, :action => :results, :own => 1) : '' %>
+	</div>
+	
+	<% if debts and not debts.empty? %>
+		<% debts.each do |debt|
+			 count += 1
+			 break unless count < 5 %>
+			 <%= render :partial => 'debts/mini_view', :locals => { :narrow => true, :debt => debt } %>
+		<% end %>
+	<% else %>
+		<div class="fallback">You have not created any IOUs</div>
+	<% end %>
+	
+	
+	<div class="header">
+		<h2>Recent News</h2>
+	</div>
+	<!-- <div class="box clearfix"> news.... -->
+	<div class="fallback">This feature has not yet been implemented</div>
+</div>	
+
+
+<div id="right_col">
+	<div class="picture">
+		<fb:profile-pic uid="<%= @current_user.id %>" size="normal" />
+	</div>
+	
+	<div class="clearfix">
+		&nbsp;<br />
+	</div>
+	
+	<div class="header">
+		<h2>My Categories</h2>
+	</div>
+	<div class="clearfix">
+		<div class="officers">
+			<% @current_user.tags.each do |tag| %>
+				<a href="<%= url_for(:controller => :debts, :action => :results, :tag => tag.name) %>">
+					<%= tag.name %>
+				</a>
+			<% end %>
+		</div>
+	</div>
+	
+	<div class="header">
+		<h2>Friends</h2>
+	</div>
+	<div class="sub_header">
+		<span style="float:left"><%= @current_user.num_friends %> IOU Friends</span><span style="float: right"><a href="">See All</a></span>
+	</div>
+	<div class="clearfix">
+		<div class="officers">
+			<% @current_user.friends.each do |friend| %>
+				<div class="friend">
+					<fb:profile-pic uid="<%= friend.id %>" linked="false" />
+					<dt><%= link_to_friend(friend.id) %></dt>
+					<dd>
+						<% if friend.debtor? %>
+							owes
+						<% else %>
+							lent
+						<% end %>
+						you <%= number_to_currency(friend.amount(@current_user).abs) %>
+					</dd>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

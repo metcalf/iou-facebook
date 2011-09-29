@@ -1,0 +1,23 @@
+<%
+=begin
+--- Parameters: single parameter 'person' representing a facebook user, uses these attributes:
+id: The facebook user's id
+debtor?: whether the person is in debt to the current user
+net: absolute amount the person owes/is owed to the current user
+debts(@current_user): list of debts with the current user
+	- name: name of the debt
+=end
+%>
+
+<tr>
+	<fb:js-string var="friend_name.e<%= payment.other_user_id %>"><fb:name uid="<%= payment.other_user_id %>" linked="false" useyou="false" /></fb:js-string>
+	<td><%= link_to_friend(payment.payor_id) %></td>
+	<td><%= link_to_friend(payment.payee_id) %></td>
+	<td><%= payment.date.to_formatted_s(:short) %></td>
+	<td><%= payment.amount %></td>
+	<td><%= payment.notes %></td>
+	<td id="payment_insert">
+		<a onclick="start_edit_dialog(); set_edit_values({'count' : <%= count %>, 'other_user_id' : <%= payment.other_user_id %>,'direction' : '<%= payment.direction %>','amount' : <%= payment.amount %>, 'notes' : '<%= payment.notes %>', 'id' : <%= payment.id %>, 'year' : <%= payment.date.year - (Date.today.year-9) %>, 'month' : <%= payment.date.month - 1 %>, 'day' : <%= payment.date.day - 1 %>});">Edit</a>
+		<a onclick="delete_payment('<%= payment.id %>','<%= url_for(:controller => :payments, :action => :delete) %>');">Delete</a>
+	</td>
+</tr>

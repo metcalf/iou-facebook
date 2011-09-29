@@ -1,0 +1,102 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# Devloper owes Metcalf 30.45, outstanding
+dinner:
+    id: 1
+    creator_id: 616421
+    date: 2008-01-30
+    description: I bought you dinner the other night.  Pay me back.
+    name: Dinner
+    image_id: 1
+    permissions_level: 1
+    
+# Metcalf owes Gabler 20.25, completed
+dog:
+    id: 2
+    creator_id: 1253603666
+    date: 2008-01-20
+    description: I paid for your dog.  Pay me back.
+    name: Dog
+    image_id: 1
+    permissions_level: 2
+
+old_stuff: 
+  name: Old stuff from money.throughawall.com
+  updated_at: 2008-08-22 00:25:08
+  date: "2008-08-21"
+  creator_id: 627182
+  id: 3
+  description: This is what everyone owes me from the old system.  It includes everything anyone paid my through July 7th and all bills through the end of May.
+  image_id: "1"
+  created_at: 2008-08-21 23:02:17
+  permissions_level: 1
+june_comcast: 
+  name: June Comcast
+  updated_at: 2008-08-21 23:16:06
+  date: "2008-06-17"
+  creator_id: 627182
+  id: 4
+  description: Comcast bill from June, extra for Kirk, Christian and Magee for the cable boxes
+  image_id: "1"
+  created_at: 2008-08-21 23:16:06
+  permissions_level: 1
+may_pgw: 
+  name: May PGW
+  updated_at: 2008-08-21 23:23:55
+  date: "2008-06-18"
+  creator_id: 627182
+  id: 5
+  description: Gas bill from may
+  image_id: "1"
+  created_at: 2008-08-21 23:23:55
+  permissions_level: 1
+debts_004: 
+  name: June/July PGW
+  updated_at: 2008-08-21 23:43:52
+  date: "2008-07-24"
+  creator_id: 627182
+  id: 6
+  description: PGW bill for June and July.  Sorry I was late on the June bill
+  image_id: "1"
+  created_at: 2008-08-21 23:43:52
+  permissions_level: 1
+debts_005: 
+  name: July Comcast
+  updated_at: 2008-08-21 23:47:51
+  date: "2008-08-21"
+  creator_id: 627182
+  id: 7
+  description: Comcast bill for July.  Kirk, Christian and Magee pay 10 extra for cable boxes
+  image_id: "1"
+  created_at: 2008-08-21 23:47:51
+  permissions_level: 1
+debts_006: 
+  name: May PECO
+  updated_at: 2008-08-21 23:58:45
+  date: "2008-06-22"
+  creator_id: 627182
+  id: 8
+  description: This is our electric bill from may
+  image_id: "1"
+  created_at: 2008-08-21 23:58:45
+  permissions_level: 1
+debts_007: 
+  name: June PECO
+  updated_at: 2008-08-22 00:12:47
+  date: "2008-08-21"
+  creator_id: 627182
+  id: 9
+  description: "This is the june electric bill.  Here are the extra bills for A/C \n Christian: 17.41 \n Kirk: 10.66 \n Katherine: 26.11 \n Jack/Moffa (for whoever is on the 3rd floor): 26.11 \n Total A/C: 106.40"
+  image_id: "1"
+  created_at: 2008-08-22 00:12:47
+  permissions_level: 1
+debts_008: 
+  name: August PGW
+  updated_at: 2008-08-22 11:26:32
+  date: "2008-08-21"
+  creator_id: 627182
+  id: 10
+  description: Gas bill for august
+  image_id: "1"
+  created_at: 2008-08-22 11:26:32
+  permissions_level: 1

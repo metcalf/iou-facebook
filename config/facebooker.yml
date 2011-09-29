@@ -1,0 +1,40 @@
+# The api key, secret key, and canvas page name are required to get started
+# Tunnel configuration is only needed if you are going to use the facebooker:tunnel Rake tasks
+# Your callback url in Facebook should be set to http://public_host:public_port
+# To develop for the new profile design, add the following key..
+# api: new
+# remove the key or set it to anything else to use the old facebook design.
+# This should only be necessary until the final version of the new profile is released.
+
+development:
+  api_key: 1001073267163fee497d44f078796913
+  secret_key: 9101be61c962613840e359d6a2ad2cc8
+  canvas_page_name: iou-facebook-test
+  callback_url: http://ametcalf.hopto.org:3001/
+  tunnel:
+    public_host_username: 
+    public_host: 
+    public_port: 
+    local_port: 
+    
+test:
+  api_key:
+  secret_key: 
+  canvas_page_name:
+  callback_url:
+  tunnel:
+    public_host_username: 
+    public_host: 
+    public_port:
+    local_port:
+
+production:
+  api_key: 63e60464c6bedd96ac1f78045c46cb95
+  secret_key: 33c467250e2567f82a955749231e09a4
+  canvas_page_name: iou-facebook
+  callback_url: http://ioufacebook.throughawall.com/
+  tunnel:
+    public_host_username: 
+    public_host: 
+    public_port: 4007
+    local_port: 3000

@@ -1,0 +1,37 @@
+<% @no_space = true %>
+<fb:js-string var="user_select_fbml">
+	Please select a friend to record a payment for: <br />
+	<form id="user_selector_form">
+		<fb:friend-selector />
+	</form>
+</fb:js-string>
+	<div class="bar clearfix filter_bar">
+		<a id="record_payment_link" onclick="select_user();">Record Payment</a>
+	</div>
+<% if @payments.length > 0 %>
+	<div class="bar clearfix summary_bar">
+		<div class="summary"><strong>
+			Displaying <%= (@payments.offset + 1).to_s + " - " + (@payments.offset + @payments.length).to_s %> out of <%= @payments.total_entries %> payments
+		</strong></div>
+		<ul class="pagerpro">
+			<%= will_paginate @payments, :container => false, :renderer => 'ListLinkRenderer'   %>
+		</ul>
+	</div>
+	<div id="search_results" class="search_results clearfix">
+		<table class="column results">
+			<tr>
+				<th style="width: 100px">From</th>
+				<th style="width: 100px">To</th>
+				<th style="width: 80px">Date</th>
+				<th style="width: 50px">Amount</th>
+				<th style="width: 150px">Notes</th>
+				<th style="width: 50px">&nbsp;</th>
+			</tr>
+			<%  @payments.each do |payment| %>
+				<%= render :partial => "mini_view", :locals => {:payment => payment } %>
+			<% end %>
+		</table>
+	</div>
+<% else %>
+	<div class="fallback">No payments found</div>
+<% end %>

@@ -1,0 +1,41 @@
+<%
+=begin
+@other_user
+@debts (with other user)
+@form_values
+=end
+%>
+
+<% #<fb:editor action="<%= url_for(:controller => :payments, :action => :edit) %>" width="425" labelwidth="150"> %>
+<form id="debt_form" action="<%= Facebooker.facebook_path_prefix + url_for(:controller => :payments, :action => :edit) %>" method="post"><table class="editorkit" border="0" cellspacing="0" style="width:440px"><tr class="width_setter"><th style="width:80px"></th><td></td></tr>
+	
+	<fb:editor-custom label="Payment For">
+		<fb:fbml version="1.1"><fb:typeahead-input name="debt_selector" autocomplete="off"> 
+			<% @debts.each do |debt|
+				 amount = debt.amount(@current_user, @other_user)
+			 %>
+				<fb:typeahead-option value="<%= debt.id %>"><%= debt.name + ' ('+ (amount < 0 ? 'Owed ':'Owe ') + number_to_currency(amount.abs) + ')' %></fb:typeahead-option>
+			<% end %>
+		</fb:typeahead-input></fb:fbml>
+		<tr><th>&nbsp;</th><td><table id="debt_selector_insert" class="selected_user_insert">
+			<% if @form_values != nil %>
+				<%= render :partial => 'debt_view', :locals => { :debts => @form_values[:debt_selector_data], :name => 'debt_selector'} %>
+			<% end %>
+		</table></td></tr>
+	</fb:editor-custom>
+	<fb:editor-custom label="You Are">
+		<input type="radio" style="width: 30px;" name="direction" value="payor" <%= @form_values != nil and @form_values[:direction]== 'payor' ? 'checked' : '' %> />Paying <fb:name uid="<%= @other_user.id %>" linked="false" capitalize="true" /><br />
+		<input type="radio" style="width: 30px;" name="direction" value="payee" <%= @form_values != nil and @form_values[:direction]== 'payee' ? 'checked' : '' %> /> Being Paid By <fb:name uid="<%= @other_user.id %>" linked="false" capitalize="true" />
+		<input type="hidden" name="other_user_id" value="<%= @other_user.id %>" />
+		<% if @id %>
+			<input type="hidden" name="id" value="<%= @id %>" />
+		<% end %>
+	</fb:editor-custom>	
+	<fb:editor-custom label="Date">
+    	<%= date_select("payment", "date", :start_year => 2000, :default => (@form_values == nil ? Time.now : @form_values[:date]) ) %>
+    </fb:editor-custom>
+	<fb:editor-text label="Notes" name="notes" value="<%= @form_values == nil ? '' : @form_values[:notes] %>"/>
+</table></form>
+<span style="display:none;"><fb:editor></fb:editor></span>
+<script type="text/javascript" src="<%= WEB_ROOT %>/javascripts/user_select.js">
+</script>

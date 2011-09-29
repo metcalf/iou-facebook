@@ -1,0 +1,30 @@
+<link rel="stylesheet" type="text/css" media="screen" href="<%= WEB_ROOT %>/stylesheets/styles.css?v=1.2" />
+<script type="text/javascript" src="<%= WEB_ROOT %>/javascripts/payments.js?v=1.37">
+</script>
+<fb:dashboard>
+	<fb:create-button href="<%= url_for(:controller => :debts, :action => :edit, :id => nil) %>">Add an IOU</fb:create-button> 
+</fb:dashboard>
+
+<% fb_tabs do %>  
+	<%= tab_items %>  
+<% end %>    
+
+<% length = (flash[:warning].length + flash[:notice].length) %>
+
+<div id="main_content" class="clearfix" style="<%= ((length > 0 or @no_space) ? 'margin-top: 0px;' : '') %>">
+	<% if length > 0 %>
+		<div id="flash">
+		<img src="<%= WEB_ROOT %>/images/dele.gif" alt="X" onclick="Animation(document.getElementById('flash')).to('height', '0px').to('opacity', 0).hide().go(); return false;" />
+			<% flash[:warning].each do |message| %>
+				<span class="warning"><%= message %></span><br />
+			<% end %>
+			<% flash[:notice].each do |message| %>
+				<span class="notice"><%= message %></span><br />
+			<% end %>
+		</div>
+		<% if not @no_space %>
+			<div class="top_spacer">&nbsp;</div>
+		<% end %>
+	<% end %>
+	<%= yield %>
+</div>

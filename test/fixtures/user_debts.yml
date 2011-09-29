@@ -1,0 +1,664 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+dinner_devloper:
+    id: 1
+    user_id: 1261073945
+    debt_id: 1
+    credit_amount:  0
+    debit_amount: 30.45
+    is_outstanding: 1
+
+dinner_metcalf:
+    id: 2
+    user_id: 616421
+    debt_id: 1
+    credit_amount: 30.45
+    debit_amount: 0
+    is_outstanding: 1
+
+dog_metcalf:
+    id: 3
+    user_id: 616421
+    debt_id: 2
+    credit_amount: 0
+    debit_amount: 20.25
+    is_outstanding: 1
+    
+dog_gabler:
+    id: 4
+    user_id: 1253603666
+    debt_id: 2
+    credit_amount: 20.25
+    debit_amount: 0
+    is_outstanding: 1
+    
+user_debts_067: 
+  debit_amount: "7.24"
+  debt_id: 11
+  updated_at: 2008-08-22 11:26:32
+  id: "69"
+  credit_amount: "0.00"
+  user_id: 616716
+  created_at: 2008-08-22 11:26:32
+  is_outstanding: 1
+user_debts_003: 
+  debit_amount: "447.40"
+  debt_id: 3
+  updated_at: 2008-08-22 00:25:08
+  id: "101"
+  credit_amount: "0.00"
+  user_id: "616856"
+  created_at: 2008-08-21 23:02:17
+  is_outstanding: 1
+user_debts_046: 
+  debit_amount: "20.54"
+  debt_id: 8
+  updated_at: 2008-08-21 23:58:45
+  id: "46"
+  credit_amount: "0.00"
+  user_id: "616856"
+  created_at: 2008-08-21 23:58:45
+  is_outstanding: 1
+user_debts_068: 
+  debit_amount: "7.24"
+  debt_id: 11
+  updated_at: 2008-08-22 11:26:32
+  id: "70"
+  credit_amount: "0.00"
+  user_id: "618533"
+  created_at: 2008-08-22 11:26:32
+  is_outstanding: 1
+user_debts_004: 
+  debit_amount: "389.76"
+  debt_id: 3
+  updated_at: 2008-08-22 13:22:53
+  id: "102"
+  credit_amount: "0.00"
+  user_id: "615619"
+  created_at: 2008-08-21 23:02:17
+  is_outstanding: 1
+user_debts_025: 
+  debit_amount: "11.24"
+  debt_id: 5
+  updated_at: 2008-08-21 23:23:55
+  id: "25"
+  credit_amount: "0.00"
+  user_id: "616546"
+  created_at: 2008-08-21 23:23:55
+  is_outstanding: 1
+user_debts_070: 
+  debit_amount: "7.23"
+  debt_id: 11
+  updated_at: 2008-08-22 11:26:32
+  id: "72"
+  credit_amount: "65.11"
+  user_id: 627182
+  created_at: 2008-08-22 11:26:32
+  is_outstanding: 1
+user_debts_005: 
+  debit_amount: "0.00"
+  debt_id: 3
+  updated_at: 2008-08-22 00:25:08
+  id: "5"
+  credit_amount: "41.94"
+  user_id: 616716
+  created_at: 2008-08-21 23:02:17
+  is_outstanding: 1
+user_debts_026: 
+  debit_amount: "17.82"
+  debt_id: 6
+  updated_at: 2008-08-21 23:43:52
+  id: "26"
+  credit_amount: "0.00"
+  user_id: "617504"
+  created_at: 2008-08-21 23:43:52
+  is_outstanding: 1
+user_debts_047: 
+  debit_amount: "20.54"
+  debt_id: 8
+  updated_at: 2008-08-21 23:58:45
+  id: "47"
+  credit_amount: "0.00"
+  user_id: "615619"
+  created_at: 2008-08-21 23:58:45
+  is_outstanding: 1
+user_debts_069: 
+  debit_amount: "7.24"
+  debt_id: 11
+  updated_at: 2008-08-22 11:26:32
+  id: "71"
+  credit_amount: "0.00"
+  user_id: "617378"
+  created_at: 2008-08-22 11:26:32
+  is_outstanding: 1
+user_debts_006: 
+  debit_amount: "304.37"
+  debt_id: 3
+  updated_at: 2008-08-22 13:15:20
+  id: "6"
+  credit_amount: "0.00"
+  user_id: "617378"
+  created_at: 2008-08-21 23:02:17
+  is_outstanding: 0
+user_debts_027: 
+  debit_amount: "17.82"
+  debt_id: 6
+  updated_at: 2008-08-21 23:43:52
+  id: "27"
+  credit_amount: "0.00"
+  user_id: "619642"
+  created_at: 2008-08-21 23:43:52
+  is_outstanding: 1
+user_debts_050: 
+  debit_amount: "20.53"
+  debt_id: 8
+  updated_at: 2008-08-21 23:58:45
+  id: "50"
+  credit_amount: "164.30"
+  user_id: 627182
+  created_at: 2008-08-21 23:58:45
+  is_outstanding: 1
+user_debts_048: 
+  debit_amount: "20.53"
+  debt_id: 8
+  updated_at: 2008-08-21 23:58:45
+  id: "48"
+  credit_amount: "0.00"
+  user_id: "615664"
+  created_at: 2008-08-21 23:58:45
+  is_outstanding: 1
+user_debts_007: 
+  debit_amount: "214.06"
+  debt_id: 3
+  updated_at: 2008-08-22 00:25:08
+  id: "7"
+  credit_amount: "0.00"
+  user_id: "618533"
+  created_at: 2008-08-21 23:02:17
+  is_outstanding: 1
+user_debts_030: 
+  debit_amount: "17.82"
+  debt_id: 6
+  updated_at: 2008-08-21 23:43:52
+  id: "30"
+  credit_amount: "0.00"
+  user_id: 616716
+  created_at: 2008-08-21 23:43:52
+  is_outstanding: 1
+user_debts_028: 
+  debit_amount: "17.82"
+  debt_id: 6
+  updated_at: 2008-08-21 23:43:52
+  id: "28"
+  credit_amount: "0.00"
+  user_id: "616856"
+  created_at: 2008-08-21 23:43:52
+  is_outstanding: 1
+user_debts_051: 
+  debit_amount: "20.54"
+  debt_id: 8
+  updated_at: 2008-08-21 23:58:45
+  id: "51"
+  credit_amount: "0.00"
+  user_id: "616546"
+  created_at: 2008-08-21 23:58:45
+  is_outstanding: 1
+user_debts_049: 
+  debit_amount: "20.54"
+  debt_id: 8
+  updated_at: 2008-08-21 23:58:45
+  id: "49"
+  credit_amount: "0.00"
+  user_id: 616716
+  created_at: 2008-08-21 23:58:45
+  is_outstanding: 1
+user_debts_010: 
+  debit_amount: "11.61"
+  debt_id: 4
+  updated_at: 2008-08-21 23:16:06
+  id: "10"
+  credit_amount: "0.00"
+  user_id: "617504"
+  created_at: 2008-08-21 23:16:06
+  is_outstanding: 1
+user_debts_008: 
+  debit_amount: "0.00"
+  debt_id: 3
+  updated_at: 2008-08-22 13:22:53
+  id: "8"
+  credit_amount: "1966.86"
+  user_id: 627182
+  created_at: 2008-08-21 23:02:17
+  is_outstanding: 1
+user_debts_031: 
+  debit_amount: "17.82"
+  debt_id: 6
+  updated_at: 2008-08-21 23:43:52
+  id: "31"
+  credit_amount: "0.00"
+  user_id: "619493"
+  created_at: 2008-08-21 23:43:52
+  is_outstanding: 1
+user_debts_029: 
+  debit_amount: "17.83"
+  debt_id: 6
+  updated_at: 2008-08-21 23:43:52
+  id: "29"
+  credit_amount: "0.00"
+  user_id: "615619"
+  created_at: 2008-08-21 23:43:52
+  is_outstanding: 1
+user_debts_052: 
+  debit_amount: "19.34"
+  debt_id: 9
+  updated_at: 2008-08-22 00:12:47
+  id: "52"
+  credit_amount: "0.00"
+  user_id: "617504"
+  created_at: 2008-08-22 00:12:47
+  is_outstanding: 1
+user_debts_009: 
+  debit_amount: "11.61"
+  debt_id: 4
+  updated_at: 2008-08-21 23:16:06
+  id: "9"
+  credit_amount: "0.00"
+  user_id: "619642"
+  created_at: 2008-08-21 23:16:06
+  is_outstanding: 1
+user_debts_032: 
+  debit_amount: "17.82"
+  debt_id: 6
+  updated_at: 2008-08-21 23:43:52
+  id: "32"
+  credit_amount: "0.00"
+  user_id: "617378"
+  created_at: 2008-08-21 23:43:52
+  is_outstanding: 1
+user_debts_053: 
+  debit_amount: "45.45"
+  debt_id: 9
+  updated_at: 2008-08-22 00:12:47
+  id: "53"
+  credit_amount: "0.00"
+  user_id: "619642"
+  created_at: 2008-08-22 00:12:47
+  is_outstanding: 1
+user_debts_011: 
+  debit_amount: "21.63"
+  debt_id: 4
+  updated_at: 2008-08-21 23:16:06
+  id: "11"
+  credit_amount: "0.00"
+  user_id: "616856"
+  created_at: 2008-08-21 23:16:06
+  is_outstanding: 1
+user_debts_054: 
+  debit_amount: "19.34"
+  debt_id: 9
+  updated_at: 2008-08-22 00:12:47
+  id: "54"
+  credit_amount: "0.00"
+  user_id: "616856"
+  created_at: 2008-08-22 00:12:47
+  is_outstanding: 1
+user_debts_012: 
+  debit_amount: "21.62"
+  debt_id: 4
+  updated_at: 2008-08-21 23:16:06
+  id: "12"
+  credit_amount: "0.00"
+  user_id: "615619"
+  created_at: 2008-08-21 23:16:06
+  is_outstanding: 1
+user_debts_033: 
+  debit_amount: "17.82"
+  debt_id: 6
+  updated_at: 2008-08-21 23:43:52
+  id: "33"
+  credit_amount: "0.00"
+  user_id: "618533"
+  created_at: 2008-08-21 23:43:52
+  is_outstanding: 1
+user_debts_013: 
+  debit_amount: "11.61"
+  debt_id: 4
+  updated_at: 2008-08-21 23:16:06
+  id: "13"
+  credit_amount: "0.00"
+  user_id: "619493"
+  created_at: 2008-08-21 23:16:06
+  is_outstanding: 1
+user_debts_034: 
+  debit_amount: "17.83"
+  debt_id: 6
+  updated_at: 2008-08-21 23:43:52
+  id: "34"
+  credit_amount: "160.40"
+  user_id: 627182
+  created_at: 2008-08-21 23:43:52
+  is_outstanding: 1
+user_debts_055: 
+  debit_amount: "30.00"
+  debt_id: 9
+  updated_at: 2008-08-22 00:12:47
+  id: "55"
+  credit_amount: "0.00"
+  user_id: "615619"
+  created_at: 2008-08-22 00:12:47
+  is_outstanding: 1
+user_debts_035: 
+  debit_amount: "11.62"
+  debt_id: 7
+  updated_at: 2008-08-21 23:47:51
+  id: "35"
+  credit_amount: "0.00"
+  user_id: "617504"
+  created_at: 2008-08-21 23:47:51
+  is_outstanding: 1
+user_debts_056: 
+  debit_amount: "19.34"
+  debt_id: 9
+  updated_at: 2008-08-22 00:12:47
+  id: "56"
+  credit_amount: "0.00"
+  user_id: "619493"
+  created_at: 2008-08-22 00:12:47
+  is_outstanding: 1
+user_debts_014: 
+  debit_amount: "11.61"
+  debt_id: 4
+  updated_at: 2008-08-21 23:16:06
+  id: "14"
+  credit_amount: "0.00"
+  user_id: 616716
+  created_at: 2008-08-21 23:16:06
+  is_outstanding: 1
+user_debts_057: 
+  debit_amount: "19.34"
+  debt_id: 9
+  updated_at: 2008-08-22 00:12:47
+  id: "57"
+  credit_amount: "0.00"
+  user_id: 616716
+  created_at: 2008-08-22 00:12:47
+  is_outstanding: 1
+user_debts_015: 
+  debit_amount: "21.63"
+  debt_id: 4
+  updated_at: 2008-08-21 23:16:06
+  id: "15"
+  credit_amount: "0.00"
+  user_id: "617378"
+  created_at: 2008-08-21 23:16:06
+  is_outstanding: 1
+user_debts_036: 
+  debit_amount: "11.62"
+  debt_id: 7
+  updated_at: 2008-08-21 23:47:51
+  id: "36"
+  credit_amount: "0.00"
+  user_id: "619642"
+  created_at: 2008-08-21 23:47:51
+  is_outstanding: 1
+user_debts_016: 
+  debit_amount: "11.61"
+  debt_id: 4
+  updated_at: 2008-08-21 23:16:06
+  id: "16"
+  credit_amount: "0.00"
+  user_id: "618533"
+  created_at: 2008-08-21 23:16:06
+  is_outstanding: 1
+user_debts_037: 
+  debit_amount: "21.61"
+  debt_id: 7
+  updated_at: 2008-08-21 23:47:51
+  id: "37"
+  credit_amount: "0.00"
+  user_id: "616856"
+  created_at: 2008-08-21 23:47:51
+  is_outstanding: 1
+user_debts_060: 
+  debit_amount: "36.75"
+  debt_id: 9
+  updated_at: 2008-08-22 00:12:47
+  id: "60"
+  credit_amount: "0.00"
+  user_id: "617378"
+  created_at: 2008-08-22 00:12:47
+  is_outstanding: 1
+user_debts_058: 
+  debit_amount: "45.45"
+  debt_id: 9
+  updated_at: 2008-08-22 00:12:47
+  id: "58"
+  credit_amount: "0.00"
+  user_id: "618533"
+  created_at: 2008-08-22 00:12:47
+  is_outstanding: 1
+user_debts_017: 
+  debit_amount: "11.61"
+  debt_id: 4
+  updated_at: 2008-08-21 23:16:06
+  id: "17"
+  credit_amount: "134.54"
+  user_id: 627182
+  created_at: 2008-08-21 23:16:06
+  is_outstanding: 1
+user_debts_040: 
+  debit_amount: "11.62"
+  debt_id: 7
+  updated_at: 2008-08-21 23:47:51
+  id: "40"
+  credit_amount: "0.00"
+  user_id: 616716
+  created_at: 2008-08-21 23:47:51
+  is_outstanding: 1
+user_debts_038: 
+  debit_amount: "21.61"
+  debt_id: 7
+  updated_at: 2008-08-21 23:47:51
+  id: "38"
+  credit_amount: "0.00"
+  user_id: "615619"
+  created_at: 2008-08-21 23:47:51
+  is_outstanding: 1
+user_debts_061: 
+  debit_amount: "19.35"
+  debt_id: 9
+  updated_at: 2008-08-22 00:12:47
+  id: "61"
+  credit_amount: "280.47"
+  user_id: 627182
+  created_at: 2008-08-22 00:12:47
+  is_outstanding: 1
+user_debts_059: 
+  debit_amount: "26.11"
+  debt_id: 9
+  updated_at: 2008-08-22 00:12:47
+  id: "59"
+  credit_amount: "0.00"
+  user_id: "625023"
+  created_at: 2008-08-22 00:12:47
+  is_outstanding: 1
+user_debts_020: 
+  debit_amount: "11.24"
+  debt_id: 5
+  updated_at: 2008-08-21 23:23:55
+  id: "20"
+  credit_amount: "0.00"
+  user_id: "616856"
+  created_at: 2008-08-21 23:23:55
+  is_outstanding: 1
+user_debts_018: 
+  debit_amount: "11.24"
+  debt_id: 5
+  updated_at: 2008-08-21 23:23:55
+  id: "18"
+  credit_amount: "0.00"
+  user_id: "619642"
+  created_at: 2008-08-21 23:23:55
+  is_outstanding: 1
+user_debts_041: 
+  debit_amount: "21.61"
+  debt_id: 7
+  updated_at: 2008-08-21 23:47:51
+  id: "41"
+  credit_amount: "0.00"
+  user_id: "617378"
+  created_at: 2008-08-21 23:47:51
+  is_outstanding: 1
+user_debts_039: 
+  debit_amount: "11.62"
+  debt_id: 7
+  updated_at: 2008-08-21 23:47:51
+  id: "39"
+  credit_amount: "0.00"
+  user_id: "619493"
+  created_at: 2008-08-21 23:47:51
+  is_outstanding: 1
+user_debts_062: 
+  debit_amount: "7.23"
+  debt_id: 11
+  updated_at: 2008-08-22 11:26:32
+  id: "64"
+  credit_amount: "0.00"
+  user_id: "617504"
+  created_at: 2008-08-22 11:26:32
+  is_outstanding: 1
+user_debts_021: 
+  debit_amount: "11.24"
+  debt_id: 5
+  updated_at: 2008-08-21 23:23:55
+  id: "21"
+  credit_amount: "0.00"
+  user_id: "615619"
+  created_at: 2008-08-21 23:23:55
+  is_outstanding: 1
+user_debts_019: 
+  debit_amount: "11.23"
+  debt_id: 5
+  updated_at: 2008-08-21 23:23:55
+  id: "19"
+  credit_amount: "0.00"
+  user_id: "617504"
+  created_at: 2008-08-21 23:23:55
+  is_outstanding: 1
+user_debts_042: 
+  debit_amount: "11.62"
+  debt_id: 7
+  updated_at: 2008-08-21 23:47:51
+  id: "42"
+  credit_amount: "0.00"
+  user_id: "618533"
+  created_at: 2008-08-21 23:47:51
+  is_outstanding: 1
+user_debts_063: 
+  debit_amount: "7.23"
+  debt_id: 11
+  updated_at: 2008-08-22 11:26:32
+  id: "65"
+  credit_amount: "0.00"
+  user_id: "619642"
+  created_at: 2008-08-22 11:26:32
+  is_outstanding: 1
+user_debts_043: 
+  debit_amount: "11.62"
+  debt_id: 7
+  updated_at: 2008-08-21 23:47:51
+  id: "43"
+  credit_amount: "134.55"
+  user_id: 627182
+  created_at: 2008-08-21 23:47:51
+  is_outstanding: 1
+user_debts_064: 
+  debit_amount: "7.23"
+  debt_id: 11
+  updated_at: 2008-08-22 11:26:32
+  id: "66"
+  credit_amount: "0.00"
+  user_id: "616856"
+  created_at: 2008-08-22 11:26:32
+  is_outstanding: 1
+user_debts_001: 
+  debit_amount: "326.62"
+  debt_id: 3
+  updated_at: 2008-08-22 00:25:08
+  id: "105"
+  credit_amount: "0.00"
+  user_id: "619642"
+  created_at: 2008-08-21 23:02:17
+  is_outstanding: 1
+user_debts_022: 
+  debit_amount: "11.24"
+  debt_id: 5
+  updated_at: 2008-08-21 23:23:55
+  id: "22"
+  credit_amount: "0.00"
+  user_id: "615664"
+  created_at: 2008-08-21 23:23:55
+  is_outstanding: 1
+user_debts_065: 
+  debit_amount: "7.24"
+  debt_id: 11
+  updated_at: 2008-08-22 11:26:32
+  id: "67"
+  credit_amount: "0.00"
+  user_id: "615619"
+  created_at: 2008-08-22 11:26:32
+  is_outstanding: 1
+user_debts_002: 
+  debit_amount: "326.59"
+  debt_id: 3
+  updated_at: 2008-08-22 00:25:08
+  id: "100"
+  credit_amount: "0.00"
+  user_id: "617504"
+  created_at: 2008-08-21 23:02:17
+  is_outstanding: 1
+user_debts_023: 
+  debit_amount: "11.24"
+  debt_id: 5
+  updated_at: 2008-08-21 23:23:55
+  id: "23"
+  credit_amount: "0.00"
+  user_id: 616716
+  created_at: 2008-08-21 23:23:55
+  is_outstanding: 1
+user_debts_044: 
+  debit_amount: "20.54"
+  debt_id: 8
+  updated_at: 2008-08-21 23:58:45
+  id: "44"
+  credit_amount: "0.00"
+  user_id: "617504"
+  created_at: 2008-08-21 23:58:45
+  is_outstanding: 1
+user_debts_024: 
+  debit_amount: "11.23"
+  debt_id: 5
+  updated_at: 2008-08-21 23:23:55
+  id: "24"
+  credit_amount: "89.90"
+  user_id: 627182
+  created_at: 2008-08-21 23:23:55
+  is_outstanding: 1
+user_debts_045: 
+  debit_amount: "20.54"
+  debt_id: 8
+  updated_at: 2008-08-21 23:58:45
+  id: "45"
+  credit_amount: "0.00"
+  user_id: "619642"
+  created_at: 2008-08-21 23:58:45
+  is_outstanding: 1
+user_debts_066: 
+  debit_amount: "7.23"
+  debt_id: 11
+  updated_at: 2008-08-22 11:26:32
+  id: "68"
+  credit_amount: "0.00"
+  user_id: "619493"
+  created_at: 2008-08-22 11:26:32
+  is_outstanding: 1

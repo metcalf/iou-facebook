@@ -1,0 +1,31 @@
+<%
+=begin
+debts
+name
+=end
+%>
+<% count = 0 %>
+<% if debts.respond_to?(:values)
+	debts = debts.values
+   end
+%>
+<% debts.each do |debt| %>
+	<% prefix = name + '_data[' + count.to_s + ']' %>
+	<tr id="<%= prefix %>" class="selected_item_row">
+		<td class="left">
+			<img src="<%= WEB_ROOT %>/images/dele.gif" onclick="deleteRow('<%= prefix %>')" />
+			<span><%= debt[:name] %></span>
+			<input type="hidden" id="<%= prefix+'[selection_id]' %>" name="<%= prefix+'[selection_id]' %>" value="<%= debt[:selection_id] %>" />
+		</td>
+		<td class="center">
+			<label>Amount($):</label>
+		</td>
+		<td class="right">
+			<input type="text" name="<%= prefix+'[amount]' %>" value="<%= debt[:amount] %>" />
+		</td>
+	</tr>
+	<% count += 1 %>
+<% end %>
+<script type="text/javascript">
+	document.getElementById("<%= name %>_insert").setTitle("<%= count %>");
+</script>

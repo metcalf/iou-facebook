@@ -1,0 +1,25 @@
+<% count = 0 %>
+<% if user_debts.respond_to?(:values)
+	user_debts = user_debts.values
+   end
+%>
+<% user_debts.each do |user_debt| %>
+	<% prefix = name + '_data[' + count.to_s + ']' %>
+	<tr id="<%= prefix %>" class="selected_item_row">
+		<td class="left">
+			<img src="<%= WEB_ROOT %>/images/dele.gif" onclick="deleteRow('<%= prefix %>')" />
+			<span><fb:name uid="<%= user_debt[:selection_id] %>" linked="false" capitalize="true" useyou="false" /></span>
+			<input type="hidden" id="<%= prefix+'[selection_id]' %>" name="<%= prefix+'[selection_id]' %>" value="<%= user_debt[:selection_id] %>" />
+		</td>
+		<td class="center">
+			<label>Amount($):</label>
+		</td>
+		<td class="right">
+			<input type="text" name="<%= prefix+'[amount]' %>" id="<%= prefix+'[amount]' %>" value="<%= user_debt[:amount] %>" />
+		</td>
+	</tr>
+	<% count += 1 %>
+<% end %>
+<script type="text/javascript">
+	document.getElementById("<%= name %>_insert").setTitle("<%= count %>");
+</script>

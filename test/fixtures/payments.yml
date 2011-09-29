@@ -1,0 +1,32 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+dinner_payment:
+    id: 1
+    date: 2008-03-30
+    payee_id: 616421
+    payor_id: 1261073945
+    transaction_type: 1
+    notes: Partial payment for the dinner
+    amount: 20
+    
+payments_001: 
+  updated_at: 2008-08-22 13:15:20
+  date: "2008-07-07"
+  payor_id: "617378"
+  notes: check to bank of america checking
+  transaction_type: "1"
+  id: "2"
+  payee_id: 627182
+  created_at: 2008-08-22 13:15:20
+  amount: 304.37
+  
+payments_002: 
+  updated_at: 2008-08-22 13:22:53
+  date: "2008-06-23"
+  payor_id: "615619"
+  notes: check to BofA savings
+  transaction_type: "1"
+  id: "3"
+  payee_id: 627182
+  created_at: 2008-08-22 13:22:53
+  amount: 300

@@ -1,0 +1,117 @@
+<%
+=begin
+--- Parameters: a single parameter called @debt representing a single debt with the following attributes
+name: name of the debt
+debtor?: if the current user is a debtor 
+date: date the IOU was created
+amount: amount for this user
+creator: id of the user that created the debt
+	- id
+description: description of the iou
+debtors: list of debtor users
+	- user_id
+	- amount: amount owed for this iou
+creditors: list of creditor users
+	- user_id
+	- amount: amount owed for this iou
+=end
+%>
+<script type="text/javascript">
+	function deleteDebt(){
+		var dialog = new Dialog(Dialog.DIALOG_POP);
+		dialog.onconfirm = function(){
+			document.setLocation('http://apps.facebook.com<%= url_for(:controller => :debts, :action => :delete, :id => @debt.id) %>')
+		}
+		dialog.showChoice("Delete", "Are you sure you want to delete?");
+	}
+</script>
+
+<div id="left_col">
+	<div class="header">
+		<h2>Information</h2>
+	</div>
+	<div class="box clearfix">
+		<table class="info_table">
+			<caption>Basic Information</caption>
+			<tr>
+				<td class="label">Name:</td>
+				<td><div class="datawrap"><strong><%= @debt.name %></strong></div></td>
+			</tr>
+				<tr>
+					<td class="label">
+					<% if @debt.debtor? %>
+						You owe:
+					<% else %>
+					    You are owed:
+					<% end %>
+					</td>
+					<td><div class="datawrap"><%= number_to_currency(@debt.amount.abs) %></div></td>
+				</tr>
+				<tr>
+					<td class="label">Created By:</td>	
+					<td><div class="datawrap"><%= link_to_friend(@debt.creator_id) %></div></td>
+				</tr>
+				<tr>
+					<td class="label">Date:</td>			
+					<td><div class="datawrap"><%= @debt.date.to_formatted_s(:long) %></div></td>
+				</tr>
+				
+		</table>
+	</div>
+	
+	<div class="header">
+		<h2>Description</h2>
+	</div>
+	
+	<div class="box clearfix description">
+		<%= @debt.description %>
+	</div>
+	
+	<div class="header">
+		<h2>Recent News</h2>
+	</div>
+	<!-- <div class="box clearfix"> news.... -->
+	<div class="fallback">This feature has not yet been implemented</div>
+	
+</div>
+
+<div id="right_col">
+	<div class="picture">
+		<img src="<%= WEB_ROOT + @debt.image.public_filename %>" />
+	</div>
+	
+		<ul class="actionspro">
+		<% if @debt.editor?(@current_user) %>
+			<li><a href="<%= url_for(:controller => :debts, :action => :edit, :id => @debt.id) %>">Edit</a></li>
+			<li><a onclick="deleteDebt();">Delete</a></li>
+		<% end %>
+		</ul>
+	
+	<div class="clearfix">
+		&nbsp;<br />
+	</div>
+	
+	<div class="header">
+		<h2>Debtors</h2>
+	</div>
+	<div class="clearfix">
+		<dl class="officers">
+			<% @debt.debits.each do |user_debt| %>
+				<dt><%= link_to_friend(user_debt.user_id) %></dt>
+				<dd>Owes <%= number_to_currency(user_debt.amount.abs) %></dd>
+			<% end %>
+		</dl>
+	</div>
+	
+	<div class="header">
+		<h2>Creditors</h2>
+	</div>
+	<div class="clearfix">
+		<dl class="officers">
+			<% @debt.credits.each do |user_debt| %>
+				<dt><%= link_to_friend(user_debt.user_id) %></dt>
+				<dd>Owed <%= number_to_currency(user_debt.amount.abs) %></dd>
+			<% end %>
+		</dl>
+	</div>
+</div>

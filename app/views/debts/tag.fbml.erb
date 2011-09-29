@@ -1,0 +1,6 @@
+<% @tags.each do |tag| %>
+	<span id="tag_span_<%= tag.id %>"
+		<a id="tag<%= tag.id %>" onclick="delete_tag(<%= tag.id %>, <%= @tag_debt.id %>)"><img src="<%= WEB_ROOT %>/images/dele.gif" alt="X" /></a>
+		<a href="<%= url_for(:controller => :debts, :action => :results, :tag => tag.name) %>"><%= tag.name %></a>, 
+	</span>
+<% end %>

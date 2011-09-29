@@ -1,0 +1,113 @@
+<%
+=begin
+--- Parameters: single parameter 'person' representing a facebook user, uses these attributes:
+id: The facebook user's id
+debtor?: whether the person is in debt to the current user
+amount: absolute amount the person owes/is owed to the current user
+debts(@current_user): list of debts with the current user
+	- name: name of the debt
+num_friends
+friends
+	- id
+	- debtor?(person): is this friend a debtor to the user that instantiated it through association
+	- amount
+=end
+%>
+
+<div id="left_col">
+	<div class="header">
+		<h2>Information</h2>
+	</div>
+	<div class="box clearfix">
+		<table class="info_table">
+			<caption>Basic Information</caption>
+			<tr>
+				<td class="label">Name:</td>
+				<td><div class="datawrap"><strong><fb:name uid="<%= @person.id %>" capitalize="true" linked="false" /></strong></div></td>
+			</tr>
+				<tr>
+					<td class="label">
+					<% if @person.debtor? %>
+						Owes you:
+					<% else %>
+						You owe:
+					<% end %>
+					</td>
+					<td><div class="datawrap"><%= number_to_currency(@person.amount(@current_user).abs) %></div></td>
+				</tr>
+				<tr>
+					<td class="label">
+					<% pay_amount = @person.payments_to(@current_user)
+					   if pay_amount > 0 %>
+						Has paid you:
+					<% else %>
+						You have paid:
+					<% end %>
+					</td>
+					<td><div class="datawrap"><%= number_to_currency(pay_amount.abs) %></div></td>
+				</tr>
+				<tr>
+					<td class="label">For:</td>			
+					<td><div class="datawrap">
+						<% count = 0
+						   @person.debts(@current_user).each do |debt|
+						  	 count += 1
+							 break unless count < 8 %>
+							 <a href="<%= url_for(:controller => :debts, :action => :view, :id => debt.id) %>"><%= debt.name %></a>, 
+						<% end %>
+						<% if count == 8 %>
+							<br /><a href="<%= url_for(:controller => :debts, :action => :results) %>">(more)</a>
+						<% end %>
+					</div></td>
+				</tr>
+		</table>
+	</div>
+	
+	<div class="header">
+		<h2>Recent News</h2>
+	</div>
+	<!-- <div class="box clearfix"> news.... -->
+	<div class="fallback">This feature has not yet been implemented</div>
+</div>
+
+
+<div id="right_col">
+
+	<div class="picture">
+		<fb:profile-pic uid="<%= @person.id %>" size="normal" />
+	</div>
+	
+		<ul class="actionspro">
+			<li><a onclick="get_edit_dialog(this.getParentNode());">Record Payment</a></li>
+		</ul>
+	
+	<div class="clearfix">
+		&nbsp;<br />
+	</div>
+	
+	<div class="header">
+		<h2>Friends</h2>
+	</div>
+	<div class="sub_header">
+		<span style="float:left"><%= @person.num_friends %> IOU friends </span><span style="float: right"><a href="">See All</a></span>
+	</div>
+	<div class="clearfix">
+		<div class="officers">
+			<% @person.friends.each do |friend| %>
+				<div class="friend">
+					<fb:profile-pic uid="<%= friend.id %>" linked="false" />
+					<dt><%= link_to_friend(friend.id) %></dt>
+					<dd>
+					<% if friend.debtor?(@person) %>
+						owes
+					<% else %>
+						lent
+					<% end %>
+					<fb:pronoun uid="<%= @person.id %>" objective="true" /> <%= number_to_currency(friend.amount(@person).abs) %></dd>
+				</div>
+			<% end %>
+	
+		</div>
+	</div>
+</div>
+

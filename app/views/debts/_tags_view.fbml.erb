@@ -1,0 +1,44 @@
+<fb:js-string var="tagging_window">
+	<p>Type a comma separated list of new categories for this debt:</p>
+	<input type="text" id="new_tags" /> 
+</fb:js-string>
+<script type="text/javascript" src="<%= WEB_ROOT %>/javascripts/tagging.js">
+</script>
+<script type="text/javascript">
+	function tag_dialog(){
+		var dialog = new Dialog(Dialog.DIALOG_CONTEXTUAL);
+		dialog.onconfirm = function(){
+			add_tag(document.getElementById('new_tags').getValue(), 'tag_window', '<%= debt_id %>');
+		}
+		dialog.setContext(document.getElementById('add_insert'));
+		dialog.showChoice("Add Tags", tagging_window, "Add");
+	}
+</script>
+
+<tr>
+	<th class="label" id="add_insert"><label>My Categories:</label></th>			
+	<td><div class="datawrap">
+		<% tags.each do |tag| %>
+			<% if tag.user_id == current_user.id %>
+				<span id="tag_span_<%= tag.id %>"
+					<a id="tag<%= tag.id %>" onclick="delete_tag(<%= tag.id %>, <%= debt_id %>)"><img src="<%= WEB_ROOT %>/images/dele.gif" alt="X" /></a>
+					<a href="<%= url_for(:controller => :debts, :action => :results, :tag => tag.name) %>"><%= tag.name %></a>, 
+				</span>
+			<% end %>
+		<% end %>
+		<span id="tag_window">&nbsp;</span>
+		<a onclick="tag_dialog();">(Add Categories)</a>
+	</div></td>
+</tr>
+<tr>
+	<th class="label"><label>Other's Categories:</label></th>		
+	<td><div class="datawrap">
+		<% tags.each do |tag| %>
+			<% if tag.user_id != current_user.id %>
+			<span id="tag_span_<%= tag.id %>"
+				<a href="<%= url_for(:controller => :debts, :action => :results, :tag => tag.name) %>"><%= tag.name %></a>, 
+			</span>
+			<% end %>
+		<% end %>
+	</div></td>
+</tr>

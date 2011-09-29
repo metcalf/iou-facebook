@@ -1,0 +1,56 @@
+<%
+=begin
+--- Parameters: a single parameter called debt representing a single debt with the following attributes
+name: name of the debt
+debtor?: if the current user is a debtor 
+date: date the IOU was created
+amount: amount for this debt
+creator: the user that created the debt
+	- id
+tags: list of categories associated with the iou
+	- name: name of the tag
+=end
+%>
+
+<div class="result clearfix">
+	<% narrow ||= false %>
+	<% if not narrow %>
+		<div class="image">
+			<a href="<%= url_for(:controller => :debts, :action => :view, :id => debt.id) %>"><img style="display:block" src="<%= WEB_ROOT + debt.image.public_filename(:thumb) %>" /></a>
+		</div>
+	<% end %>
+	
+	<div class="info <% if narrow %>narrow<% else %>wide<% end %>">
+		<dl class="clearfix">
+			<dt>Name:</dt>			<dd><a href="<%= url_for(:controller => :debts, :action => :view, :id => debt.id) %>"><strong><%= debt.name %></strong></a></dd>
+			
+			
+			<% if debt.debtor? %>
+				<dt>You owe:</dt>
+			<% else %>
+			    <dt>You are owed:</dt>
+			<% end %>
+									<dd><%= number_to_currency(debt.amount(@current_user).abs) %></dd>
+			<% pay_amount = @current_user.payments_for(debt)
+			   if pay_amount > 0 %>
+				<dt>You have paid:</dt>
+			<% else %>
+				<dt>You have been paid:</dt>
+			<% end %>
+									<dd><%= number_to_currency(pay_amount.abs) %></dd>
+			<dt>Created By:</dt>	<dd><%= link_to_friend(debt.creator_id) %></dd>
+			<dt>Date:</dt>			<dd><%= debt.date.to_formatted_s(:long) %></dd>
+			<dt>Categories:</dt>			<dd>
+										<% debt.tags.each do |tag| %>
+											<a href="<%= url_for(:controller => :debts, :action => :results, :tag => tag.name) %>"><%= tag.name %></a>, 
+										<% end %>
+									</dd>
+		</dl>
+	</div>
+	<ul class="actionspro <% if narrow %>narrow<% else %>wide<% end %>_action">
+		<% if debt.editor?(@current_user) %>
+			<li><a href="<%= url_for(:controller => :debts, :action => :edit, :id => debt.id) %>">Edit</a></li>
+			<li><a onclick="deleteDebt('<%= debt.id %>');">Delete</a></li>
+		<% end %>
+	</ul>
+</div>

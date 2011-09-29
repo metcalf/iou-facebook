@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+image:
+    id: 1
+    content_type: image/jpeg
+    filename: iou.jpg
+    size: 1086
+    width: 200
+    height: 127
+
+thumb:
+    id: 2
+    parent_id: 1
+    content_type: image/jpeg
+    thumbnail: thumb
+    filename: iou_thumb.jpg
+    size: 3007
+    width: 100
+    height: 100

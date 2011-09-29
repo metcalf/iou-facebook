@@ -1,0 +1,22 @@
+<%
+=begin
+--- Parameters: single parameter 'person' representing a facebook user, uses these attributes:
+id: The facebook user's id
+debtor?: whether the person is in debt to the current user
+net: absolute amount the person owes/is owed to the current user
+debts(@current_user): list of debts with the current user
+	- name: name of the debt
+=end
+%>
+
+<tr>
+	<td><%= link_to_friend(payment.payor_id) %></td>
+	<td><%= link_to_friend(payment.payee_id) %></td>
+	<td><%= payment.date.to_formatted_s(:short) %></td>
+	<td><%= payment.amount %></td>
+	<td><%= payment.notes %></td>
+	<td id="payment_insert">
+		<a onclick="edit_payment('<%= payment.id %>','payment_insert');">Edit</a>
+		<a onclick="delete_payment('<%= payment.id %>');">Delete</a>
+	</td>
+</tr>

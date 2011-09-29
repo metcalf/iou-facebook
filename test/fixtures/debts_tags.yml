@@ -1,0 +1,47 @@
+dinner_personal:
+    debt_id: 1
+    tag_id: 3
+
+dinner_food:
+    debt_id: 1
+    tag_id: 1
+    
+dog_personal:
+    debt_id: 2
+    tag_id: 2
+    
+debts_tags_001: 
+  debt_id: "4"
+  updated_at: 2008-08-21 23:16:06
+  tag_id: "6"
+  created_at: 2008-08-21 23:16:06
+debts_tags_002: 
+  debt_id: "5"
+  updated_at: 2008-08-21 23:23:55
+  tag_id: "4"
+  created_at: 2008-08-21 23:23:55
+debts_tags_003: 
+  debt_id: "6"
+  updated_at: 2008-08-21 23:23:55
+  tag_id: "4"
+  created_at: 2008-08-21 23:23:55
+debts_tags_004: 
+  debt_id: "7"
+  updated_at: 2008-08-21 23:16:06
+  tag_id: "6"
+  created_at: 2008-08-21 23:16:06
+debts_tags_005: 
+  debt_id: "8"
+  updated_at: 2008-08-21 23:58:45
+  tag_id: "5"
+  created_at: 2008-08-21 23:58:45
+debts_tags_006: 
+  debt_id: "9"
+  updated_at: 2008-08-21 23:58:45
+  tag_id: "5"
+  created_at: 2008-08-21 23:58:45
+debts_tags_007: 
+  debt_id: "11"
+  updated_at: 2008-08-21 23:23:55
+  tag_id: "4"
+  created_at: 2008-08-21 23:23:55

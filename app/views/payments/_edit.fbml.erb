@@ -1,0 +1,37 @@
+<%
+=begin
+@other_user
+@debts (with other user)
+@form_values
+=end
+prefix = @ajax != nil ? Facebooker.facebook_path_prefix : ""
+%>
+
+<form id="debt_form" action="<%= prefix + url_for(:controller => :payments, :action => :edit) %>" method="post"><table class="editorkit" border="0" cellspacing="0" style="width:380px"><tr class="width_setter"><th style="width:75px"></th><td></td></tr>
+	
+	<fb:editor-custom label="Friend">
+		<% if @other_user_id == nil %>
+			<span id="friend-name-wrapper" style="display: none" onclick="unhide_name_edit();"><span>&nbsp;</span><small>&nbsp;(click to edit)</small></span>
+			<span id="friend-selector-wrapper"><fb:friend-selector name="other_user_name" idname="other_user_id" /></span>
+		<% else %>
+			<fb:name uid="<%= @other_user_id %>" capitalize="true" linked="false"  />
+			<input type="hidden" name="other_user_id" id="payment_id" value="<%= @other_user_id %>" />
+		<% end%>
+	</fb:editor-custom>
+		
+	<fb:editor-custom label="You Are">
+		<input type="radio" id="payor_radio" style="width: 30px;" name="direction" value="payor" checked />You are paying<br />
+		<input type="radio" id="payee_radio" style="width: 30px;" name="direction" value="payee" /> You are being paid
+		<input type="hidden" name="id" id="payment_id" value="" />
+	</fb:editor-custom>	
+		
+	<fb:editor-custom label="Amount">
+		$<input type="text" name="amount" class="amount_field" id="payment_amount" />
+	</fb:editor-custom>
+	
+	<fb:editor-custom label="Date">
+    	<%= date_select("payment", "date", :start_year => 2000, :default => Time.now) %>
+    </fb:editor-custom>
+	<fb:editor-text label="Notes" name="notes" id="payment_notes" value="" />
+</table></form>
+<span style="display:none;"><fb:editor action="" ></fb:editor></span>
